@@ -48,7 +48,7 @@ class AuthController extends BaseController
                 }
             }
         }
-        return view('login');
+        return view('backend/login');
     }
 
     private function setUserSession($user)
