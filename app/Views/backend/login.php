@@ -12,7 +12,7 @@
         <div id="login-container" class="animation-fadeIn">
             <!-- Login Title -->
             <div class="login-title text-center">
-                <h1><i class="gi gi-flash"></i> <strong>ProUI</strong><br><small>Please <strong>Login</strong> or <strong>Register</strong></small></h1>
+                <h1><i class="gi gi-flash"></i> <strong>DSS ADM</strong><br><small>Login <strong>Login</strong><strong></strong></small></h1>
             </div>
             <!-- END Login Title -->
 

@@ -15,8 +15,8 @@ class AuthModel extends Model
 	protected $useSoftDelete        = false;
 	protected $protectFields        = true;
 	protected $allowedFields        = [
-		"user_name",
-		"full_name",
+		"username",
+		"fullname",
 		"email",
 		"mobile_number",
 		"password",
