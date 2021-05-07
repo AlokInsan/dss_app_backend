@@ -18,9 +18,16 @@
 
             <!-- Login Block -->
             <div class="block push-bit">
+            <?php if (isset($validation)) : ?>
+                        <div class="col-12">
+                            <div class="alert alert-danger" role="alert">
+                                <?= $validation->listErrors() ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
                 <!-- Login Form -->                
                 <?php  $attribute = array("method"=>"post","id"=>"form-login" ,"class"=>"form-horizontal form-bordered form-control-borderless");
-                     echo form_open('/loginme',$attribute) ?>
+                     echo form_open('/login',$attribute) ?>
                     <div class="form-group">
                         <div class="col-xs-12">
                             <div class="input-group">

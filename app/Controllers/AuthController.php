@@ -12,7 +12,7 @@ class AuthController extends BaseController
         $data = [];
 
         if ($this->request->getMethod() == 'post') {
-
+            $IPA = $this->request->getIPAddress();
             $rules = [
                 'email' => 'required|min_length[6]|max_length[50]|valid_email',
                 'password' => 'required|min_length[8]|max_length[255]|validateUser[email,password]',
@@ -37,30 +37,41 @@ class AuthController extends BaseController
                     ->first();
 
                 // Stroing session values
-                $this->setUserSession($user);
+                $this->setUserSession($user,$IPA);
+                return redirect()->to(base_url($user['slug']));
                 // Redirecting to dashboard after login
                // return redirect()->to(base_url('dashboard'));
                 // Redirecting to dashboard after login
-                if($user['role'] == "super_admin"){
-                    return redirect()->to(base_url('admin'));
-                }elseif($user['role'] == "lab_instructor"){
-                    return redirect()->to(base_url('labinstructor'));
-                }
+                //if($user['role'] == "adm"){
+                //    return redirect()->to(base_url('adm'));
+                //}elseif($user['role'] == "lab_instructor"){
+                //    return redirect()->to(base_url('usr'));
+                //}
             }
         }
         return view('backend/login');
     }
 
-    private function setUserSession($user)
+    private function setUserSession($user,$IPA)
     {
+        $model = new AuthModel();
         $data = [
             'id' => $user['id'],
-            'user_name' => $user['user_name'],
+            'user_name' => $user['username'],            
+            'rtslug' => $user['slug'],
             'mobile_number' => $user['mobile_number'],
             'email' => $user['email'],
             'isLoggedIn' => true,
-            "role" => $user['role'],
+            "role" => $user['role'],            
+            "ip" => $IPA,
         ];
+
+        $newData = [
+            'Is_online' => 1,
+            'login_ip'  => $IPA,
+        ];      
+
+        $model->update( $user['id'],$newData);
 
         session()->set($data);
         return true;
@@ -124,7 +135,13 @@ class AuthController extends BaseController
 
     public function logout()
     {
+        $model = new AuthModel();
+        $upData = [
+            'Is_online' => 0,
+            'last_login_ip'  => session()->get('ip'),
+        ];      
+        $model->update( session()->get('id'),$upData);
         session()->destroy();
-        return redirect()->to(base_url('/'));
+        return redirect()->to(base_url('/login'));
     }
 }

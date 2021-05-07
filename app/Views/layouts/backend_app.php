@@ -122,7 +122,7 @@
                                     <a href="page_ready_inbox.html" data-toggle="tooltip" data-placement="bottom" title="Messages"><i class="gi gi-envelope"></i></a>
                                     <!-- Opens the user settings modal that can be found at the bottom of each page (page_footer.html in PHP version) -->
                                     <a href="javascript:void(0)" class="enable-tooltip" data-placement="bottom" title="Settings" onclick="$('#modal-user-settings').modal('show');"><i class="gi gi-cogwheel"></i></a>
-                                    <a href="login.html" data-toggle="tooltip" data-placement="bottom" title="Logout"><i class="gi gi-exit"></i></a>
+                                    <a href="<?= base_url()?>/logout" data-toggle="tooltip" data-placement="bottom" title="Logout"><i class="gi gi-exit"></i></a>
                                 </div>
                             </div>
                             <!-- END User Info -->
@@ -690,7 +690,7 @@
                                     <li class="divider"></li>
                                     <li>
                                         <a href="page_ready_lock_screen.html"><i class="fa fa-lock fa-fw pull-right"></i> Lock Account</a>
-                                        <a href="<?= base_url()?>/login"><i class="fa fa-ban fa-fw pull-right"></i> Logout</a>
+                                        <a href="<?= base_url()?>/logout"><i class="fa fa-ban fa-fw pull-right"></i> Logout</a>
                                     </li>
                                     <!--li class="dropdown-header text-center">Activity</li>
                                     <li>
